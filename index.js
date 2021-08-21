@@ -1,7 +1,10 @@
+const mongoose = require("mongoose");
 const express = require("express");
 const fs = require("fs");
 const app = express();
-
+const vedic = require("./vedicmaths/index");
+mongoose.connect("mongodb://127.0.0.1:27017/testdb",{useUnifiedTopology:true,useNewUrlParser:true,useCreateIndex:true,useFindAndModify:false});
+app.use("/vedic",vedic);
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });
